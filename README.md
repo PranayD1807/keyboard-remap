@@ -45,6 +45,21 @@ While you can swap them in macOS System Settings, **macOS has a notorious bug**:
 
 ## Quick Start / Installation
 
+### Method 1: Via Homebrew (Recommended)
+
+```bash
+# Add the tap
+brew tap PranayD1807/tap
+
+# Install keyboard-remap
+brew install keyboard-remap
+
+# Start the background daemon (starts automatically on login)
+brew services start keyboard-remap
+```
+
+### Method 2: Build From Source
+
 ```bash
 git clone https://github.com/PranayD1807/keyboard-remap.git
 cd keyboard-remap
