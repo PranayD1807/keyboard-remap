@@ -169,8 +169,8 @@ class SettingsViewModel: ObservableObject {
     
     func checkDaemon() {
         let task = Process()
-        task.launchPath = "/bin/launchctl"
-        task.arguments = ["list"]
+        task.launchPath = "/usr/bin/pgrep"
+        task.arguments = ["-x", "keyboard-remap-daemon"]
         let pipe = Pipe()
         task.standardOutput = pipe
         try? task.run()
@@ -178,7 +178,7 @@ class SettingsViewModel: ObservableObject {
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: data, encoding: .utf8) ?? ""
         DispatchQueue.main.async {
-            self.isDaemonRunning = output.contains("com.pranay.keyboard-remap") || output.contains("com.pranay.lenovo-key-remap")
+            self.isDaemonRunning = !output.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         }
     }
     
@@ -311,6 +311,19 @@ class SettingsViewModel: ObservableObject {
     }
     
     func restartDaemon() {
+        if FileManager.default.fileExists(atPath: "/opt/homebrew/bin/brew") {
+            let brewRestart = Process()
+            brewRestart.launchPath = "/opt/homebrew/bin/brew"
+            brewRestart.arguments = ["services", "restart", "keyboard-remap"]
+            try? brewRestart.run()
+            brewRestart.waitUntilExit()
+            if brewRestart.terminationStatus == 0 {
+                statusMessage = "Daemon restarted via Homebrew"
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { self.checkDaemon() }
+                return
+            }
+        }
+        
         let home = FileManager.default.homeDirectoryForCurrentUser.path
         let plistPath = "\(home)/Library/LaunchAgents/com.pranay.keyboard-remap.plist"
         let legacyPlistPath = "\(home)/Library/LaunchAgents/com.pranay.lenovo-key-remap.plist"
@@ -329,7 +342,7 @@ class SettingsViewModel: ObservableObject {
         load.waitUntilExit()
         
         statusMessage = "Daemon reloaded"
-        checkDaemon()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { self.checkDaemon() }
     }
 }
 
@@ -342,7 +355,7 @@ let modifierOptions: [(id: String, label: String)] = [
     ("escape", "Escape")
 ]
 
-let appVersion = "0.0.1-beta"
+let appVersion = "0.0.2-beta"
 
 struct ContentView: View {
     @ObservedObject var vm: SettingsViewModel

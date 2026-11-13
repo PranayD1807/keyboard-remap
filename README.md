@@ -1,6 +1,6 @@
 # Fix Windows & PC Keyboards on macOS
 
-`v0.0.1-beta` • Native Swift • Zero Virtual Drivers • ~5 MB RAM
+`v0.0.2-beta` • Native Swift • Zero Virtual Drivers • ~5 MB RAM
 
 A lightweight native macOS background daemon and Settings UI designed to make external PC & Windows keyboards (Lenovo, Dell, Keychron, Logitech, mechanical keyboards, etc.) work seamlessly on Mac—**without macOS resetting your swapped modifier keys on disconnect, sleep, or reboot**.
 

@@ -3,7 +3,7 @@ import IOKit.hid
 import AppKit
 
 let home = FileManager.default.homeDirectoryForCurrentUser.path
-let appVersion = "0.0.1-beta"
+let appVersion = "0.0.2-beta"
 let configPath = (home as NSString).appendingPathComponent(".config/keyboard-remap/config.json")
 let configDir = (home as NSString).appendingPathComponent(".config/keyboard-remap")
 
