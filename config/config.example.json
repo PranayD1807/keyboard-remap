@@ -1,0 +1,16 @@
+{
+  "devices": [
+    {
+      "name": "Lenovo Wireless Keyboard",
+      "vendor_id": 6127,
+      "product_id": 24735,
+      "remap": {
+        "left_alt": "left_command",
+        "left_win": "left_option",
+        "right_alt": "right_command",
+        "right_win": "right_option"
+      }
+    }
+  ]
+}
+
