@@ -357,13 +357,13 @@ struct ContentView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 3) {
                     HStack(alignment: .firstTextBaseline, spacing: 6) {
-                        Text("Keyboard Remap Settings")
+                        Text("PC & Windows Keyboard Fix")
                             .font(.system(size: 16, weight: .bold))
                         Text("v\(appVersion)")
                             .font(.system(size: 11, weight: .semibold, design: .monospaced))
                             .foregroundColor(.secondary)
                     }
-                    Text("Auto-detect and remap any key on any keyboard")
+                    Text("Permanent Alt ↔ Cmd layout fix that never resets on sleep or unplug")
                         .font(.system(size: 12))
                         .foregroundColor(.secondary)
                 }
