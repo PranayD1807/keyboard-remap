@@ -1,5 +1,7 @@
 # macOS Keyboard Remap Daemon & Settings UI
 
+`v0.0.1-beta`
+
 A lightweight, native macOS solution to persistently remap any modifier or custom key (e.g. swapping Alt $\leftrightarrow$ Command, Windows $\leftrightarrow$ Option, F-keys, Navigation, or Media keys on external keyboards) so settings **never reset** when you disconnect and reconnect your keyboard, turn it off/on, or wake your Mac from sleep.
 
 ---

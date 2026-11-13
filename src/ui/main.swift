@@ -342,6 +342,8 @@ let modifierOptions: [(id: String, label: String)] = [
     ("escape", "Escape")
 ]
 
+let appVersion = "0.0.1-beta"
+
 struct ContentView: View {
     @ObservedObject var vm: SettingsViewModel
     
@@ -354,8 +356,13 @@ struct ContentView: View {
             // Header
             HStack {
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("Keyboard Remap Settings")
-                        .font(.system(size: 16, weight: .bold))
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                        Text("Keyboard Remap Settings")
+                            .font(.system(size: 16, weight: .bold))
+                        Text("v\(appVersion)")
+                            .font(.system(size: 11, weight: .semibold, design: .monospaced))
+                            .foregroundColor(.secondary)
+                    }
                     Text("Auto-detect and remap any key on any keyboard")
                         .font(.system(size: 12))
                         .foregroundColor(.secondary)
